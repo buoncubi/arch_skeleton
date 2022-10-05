@@ -132,7 +132,7 @@ in the `script/` folder.
 
 ### The `speech-eval` Node and Its Messages
 
-**TODO** add image
+<img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/speech-eval.png" width="600">
 
 The `speech-eval` node is a simple publisher that produces `Speech` messages in the 
 `/sensor/speech` topic. Each generated message has two fields: a time `stamp` and a 
@@ -159,7 +159,7 @@ With `rosparam` you might also set the `test/random_sense/active` and
 
 ### The `gesture-eval` Node and Its Messages
 
-**TODO** add image
+<img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/gesture-eval.png" width="600">
 
 The `gesture-eval` node is a simple publisher that produces `Gesture` messages in the 
 `sensor/gesture` topic. Each generated message has two fields: a time `stamp` and a `coordinate`.
@@ -187,7 +187,7 @@ With `rosparam` you might also set the `test/random_sense/active` and
 
 ### The `robot-state` Node and Its Messages
 
-**TODO** add image
+<img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/robot-state-eval.png" width="600">
 
 The `robot-state` is a node that encodes the knowledge shared among the other components, and it 
 implements two services (i.e., `state/set_pose` and `state/get_pose`) and a publisher (i.e., 
@@ -228,7 +228,7 @@ With `rosparam` you might also set the `test/random_sense/active` and
 
 ### The `planner` Node and Its Messages
 
-**TODO** add image
+<img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/planner.png" width="900">
 
 The `planner` nodes implements an action server named `motion/planner`. This is done by the 
 means of the `SimpleActionServer` class based on the `Plan` action message. This action server 
@@ -285,7 +285,8 @@ Then a GUI should appear. Set the goal you want to reach and hit the send button
 can cancel the goal as well.
 
 ### The `controller` Node and Its Messages
-**TODO** add image
+
+<img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/controller.png" width="900">
 
 The `controller` nodes implements an action server named `motion/controller`. This is done by 
 the means of the `SimpleActionServer` class based on the `Control` action message. This action 
