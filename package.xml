@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>arch_skeleton</name>
+  <version>0.0.1</version>
+  <description>An exercise for the Experimental Robotics Laboratory course held at the University of Genoa.</description>
+
+  <maintainer email="luca.buoncompagni@edu.unige.it">Luca Buoncompagni</maintainer>
+  <license>GNUv3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+  <depend>actionlib_msgs</depend>
+
+  <export> </export>
+</package>

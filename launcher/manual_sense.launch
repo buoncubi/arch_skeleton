@@ -1,0 +1,48 @@
+<launch>
+    <!-- Run the architecture's component and allow to test it through a simple keyboard-based interface. -->
+
+    <rosparam param="state/initial_pose"> [0.0,  0.0] </rosparam>
+
+    <rosparam param="config/user_pose"> [5.0,  5.0] </rosparam>
+    <rosparam param="config/environment_size"> [10.0, 10.0] </rosparam>
+    <rosparam param="config/speech_commands"> ["Hello", "Bye"] </rosparam>
+
+    <rosparam param="test/random_motion_time"> [0.1, 2.0] </rosparam>
+    <rosparam param="test/random_plan_points"> [2, 8] </rosparam>
+    <rosparam param="test/random_plan_time"> [0.1, 1.0] </rosparam>
+
+    <rosparam param="test/random_sense/active"> False </rosparam>
+
+    <node pkg = "arch_skeleton"  
+          type = "gesture.py"      
+          name = "gesture"      
+          launch-prefix = "x-terminal-emulator -e"
+          output = "screen"
+    > </node>
+
+    <node pkg = "arch_skeleton"  
+          type = "speech.py"
+          name = "speech"
+          launch-prefix = "x-terminal-emulator -e"
+          output = "screen"
+    > </node>
+
+    <node pkg = "arch_skeleton"  
+          type = "robot_states.py" 
+          name = "robot_states"
+          launch-prefix = "x-terminal-emulator -e"
+          output = "screen"
+    > </node>
+    
+    <node pkg = "arch_skeleton"  
+          type = "planner.py"
+          name = "planner"
+          output = "screen"
+    > </node>
+    
+    <node pkg = "arch_skeleton"  
+          type = "controller.py"
+          name = "controller"
+          output = "screen"
+    > </node>
+</launch>

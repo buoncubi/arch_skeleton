@@ -1,0 +1,10 @@
+####### The service to get the current robot position
+
+### No service inputs
+
+---
+
+### Service output
+
+# The current robot pose as a 2D coordinate.
+Point pose 
