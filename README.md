@@ -79,7 +79,7 @@ For simplicity and showing purposes, we consider a scenario with the following a
    points is small enough to disregard the positions within two via points (e.g., for 
    representing the current robot pose).
  - The user can only say simple (and predefined) commands to the robot through the speech-based 
-   interface. The speech-based commands can be given at any time, and they might be wrongly      
+   interface. The speech-based commands can be given at any time, and they might be wrongly
    detected.
  - A pointing gesture is valid only when the interaction occurs. If more gestures are provided,
    the robot should consider the more recent one.
@@ -104,6 +104,8 @@ Machine does not allow for concurrent states.
 This repository contains a ROS package named `arch_skeleton` that includes the following resources.
  - [CMakeList.txt](CMakeList.txt): File to configure this package.
  - [package.xml](package.xml): File to configure this package.
+ - [setup.py](setup.py): File to `import` the scripts in the `utilities` folder into the files
+   in the `script` folder. 
  - [launcher/](launcher/): Contains the configuration to launch this package.
     - [manual_sense.launch](launcher/manual_sense.launch): It launches this package allowing 
        for keyboard-based interface.
@@ -133,6 +135,8 @@ This repository contains a ROS package named `arch_skeleton` that includes the f
     - [planner.py](scripts/planner.py): It is a dummy implementation of a motion planner.
     - [controller.py](scripts/controller.py): It is a dummy implementation of a motion 
       controller.
+ - [utilities/arch_skeleton](utilities/arch_skeleton/): It contains auxiliary python files, 
+   which are exploited bye in the files in the `scripts` folder.
     - [architecture_name_mapper.py](scripts/architecture_name_mapper.py): It contains the name 
       of each *node*, *topic*, *server*, *actions* and *parameters* used in this architecture.
  - [diagrams/](diagrams/): It contains the diagrams shown below in this README file.
@@ -170,7 +174,8 @@ The `speech-eval` node is a simple publisher that produces `Speech` messages in 
 `"Bye"` when the interaction should end. Such keywords can be configured through the 
 `config/speech_commands` parameter (detailed below).
 
-This node allows publishing messages from the keyboard or in a randomized manner, and this can be chosen with the `test/random_sense/active` parameter detailed below. When random messages are
+This node allows publishing messages from the keyboard or in a randomized manner, and this can 
+be chosen with the `test/random_sense/active` parameter detailed below. When random messages are
 published, the `test/random_sense/speech_time` parameter is used to delay the generated 
 commands, which might not always be consistent for accounting perception errors (e.g., the command 
 `"???"` is sometimes published).
@@ -226,13 +231,16 @@ The `robot-state` is a node that encodes the knowledge shared among the other co
 implements two services (i.e., `state/set_pose` and `state/get_pose`) and a publisher (i.e., 
 `state/battery_low`). 
 
-The services allow setting and getting the current robot position, which is shared between the `planner` and the `controller` as detailed below. In particular, the `state/set_pose` requires a 
+The services allow setting and getting the current robot position, which is shared between the 
+`planner` and the `controller` as detailed below. In particular, the `state/set_pose` requires a 
 `Point` to be set and returns nothing, while the `state/get_pose` requires nothing and return
 a `Point` encoding the robot pose. 
 
 Note that a client should set the initial robot position when the architecture startups. 
 
-Also, note that, for more general architectures, the robot pose might be published in a topic, instead of being provided through a server. This is because many components might require the current robot pose, which might change frequently. However, this example does not consider such a case.
+Also, note that, for more general architectures, the robot pose might be published in a topic, 
+instead of being provided through a server. This is because many components might require the 
+current robot pose, which might change frequently. However, this example does not consider such a case.
 
 Moreover, the `robot-state` also implements a publisher of `Boolean` messages into the `state/
 battery_low` topic. This message is published when the batter changes state. We consider two 
@@ -267,7 +275,8 @@ The `planner` node implements an action server named `motion/planner`. This is d
 means of the `SimpleActionServer` class based on the `Plan` action message. This action server 
 requires the `state/get_pose/` service of the `robot-state` node, and a `target` point given as goal.
 
-Given the current and target points, this component returns a plan as a list of `via_points`, which are randomly generated for simplicity. The number of `via_points` can be set with the 
+Given the current and target points, this component returns a plan as a list of `via_points`, 
+which are randomly generated for simplicity. The number of `via_points` can be set with the 
 `test/random_plan_points` parameter addressed below. Moreover, each `via_point` is provided 
 after a delay to simulate computation, which can be tuned through the `test/random_plan_time` 
 parameter. When a new `via_points` is generated, the updated plan is provided as `feedback`. When
@@ -313,11 +322,19 @@ rosservice call /state/set_pose "pose: { x: 0.11,  y: 0.22}"
 rosparam set config/environment_size '[10,10]'
 rosrun arch_skeleton planner.py
 # Open a new terminal.
-rosrun actionlib axclient.py /motion/planner
+rosrun actionlib_tools axclient.py /motion/planner
 ```
 Then a GUI should appear. Set the goal you want to reach and hit the send button. Eventually, you
 can cancel the goal as well. Also, you can change the `test/random_plan_points` and 
 `test/random_plan_time` parameters (detailed below) to tune the behaviour of the planner.
+
+To last command of the above fragment of code requires the `actionlib-tools` package, which can
+be installed with:
+done by typing:
+```bash
+sudo apt update
+sudo apt install ros-noetic-actionlib-tools
+```
 
 
 ### The `controller` Node, its Message and Parameters
@@ -354,9 +371,9 @@ rosservice call /state/set_pose "pose: { x: 0.11,  y: 0.22}"
 #rosparam set config/environment_size '[10,10]'
 rosrun arch_skeleton controller.py
 # Open a new terminal.
-rosrun actionlib axclient.py /motion/controller
+rosrun actionlib_tools axclient.py /motion/controller
 ```
-Then the same GUI seen for the `planner` should appear. In this case, you can test goals 
+Then, the same GUI seen for the `planner` should appear. In this case, you can test goals 
 formatted as:
 ```yaml
 via_points: 
@@ -407,7 +424,8 @@ i.e., speech, gesture and battery level.
 roslaunch arch_skeleton random_sense.launch
 ```
 
-Note that the architecture launched with these commands does nothing, except generate stimulus, i.e., battery level, speech and gesture commands. In order to invoke the motion planner 
+Note that the architecture launched with these commands does nothing, except generate stimulus, 
+i.e., battery level, speech and gesture commands. In order to invoke the motion planner 
 and controller, you need to implement the Finite States Machine as described below.
 
 Check the `roslouch` outcome to get the path where logs are stored. usually, it is `~/.ros/log/`.
