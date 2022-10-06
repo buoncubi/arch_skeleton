@@ -1,7 +1,7 @@
 # Robot Architecture Skeleton
-**A ROS-based exercise for the Experimental Robotics Laboratory course  
-held at the University of Genoa.**    
-Author: *Luca Buoncomapgni*  
+**A ROS-based exercise for the Experimental Robotics Laboratory course held at the University of Genoa.**  
+Author *Luca Buoncomapgni*
+
 ---
 
 ## Introduction
@@ -60,7 +60,7 @@ The scenario involves a pet-like robot with the following behaviour.
  - When the battery is low, the robot immediately stops and waits for charging. For simplicity, we 
    do not control the robot toward a specific location to recharge its battery.
  - When a user issues specific speech-based commands a human-robot interaction phase starts or 
-   stops, i.e., `called` (e.g., "Come here!", "Hi!", etc.) or `greeted` (e.g., "Bye", "Stop", 
+   stops, i.e., *called* (e.g., "Come here!", "Hi!", etc.) or *greeted* (e.g., "Bye", "Stop", 
    etc.), respectively.
  - When the interaction starts, the robot moves toward the user and waits for a pointing gesture. 
    The gesture is performed by the user to indicate a position in the environment.
@@ -97,7 +97,7 @@ other words, the Finite States Machine should process speech-based, gesture-base
 battery-based events as soon as they occur. Furthermore, we consider that the Finite States 
 Machine does not allow for concurrent states.
 
-## Software Structure
+## Project Structure
 
 ### Package List
 
@@ -154,7 +154,6 @@ this repository should be based on [SMACH](http://wiki.ros.org/smach). You can c
 [tutorials](http://wiki.ros.org/smach/Tutorials) related to SMACH, for an overview of its 
 functionalities. In addition, you can exploit the [smach_viewer](http://wiki.ros.org/smach_viewer)
 node to visualize and debug the implemented Finite States Machine.
-
 
 ## Software Components
 
@@ -221,7 +220,7 @@ published.
 
 ### The `robot-state` Node and Its Messages
 
-<img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/robot-state-eval.png" width="600">
+<img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/robot-state.png" width="900">
 
 The `robot-state` is a node that encodes the knowledge shared among the other components, and it 
 implements two services (i.e., `state/set_pose` and `state/get_pose`) and a publisher (i.e., 
