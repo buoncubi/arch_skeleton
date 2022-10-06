@@ -3,7 +3,7 @@
 import random
 import rospy
 # Import constant name defined to structure the architecture.
-import architecture_name_mapper as anm
+from arch_skeleton import architecture_name_mapper as anm
 # Import the message type (and sub-type) to be published.
 from arch_skeleton.msg import Gesture, Point
 
@@ -46,7 +46,7 @@ def generate_random_gesture(publisher, environment_size, gesture_timing):
 def generate_manual_gesture(publisher, environment_size):
     try:
         # Wait until Enter is pressed and get the typed text.
-        user_input = raw_input(' > ')
+        user_input = input(' > ')
         user_input = user_input.lower()
         # Understand the entered text.
         coordinate = [i.strip() for i in user_input.split(',')]

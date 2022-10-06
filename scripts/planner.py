@@ -3,7 +3,7 @@
 import random
 import rospy
 # Import constant name defined to structure the architecture.
-import architecture_name_mapper as anm
+from arch_skeleton import architecture_name_mapper as anm
 # Import the ActionServer implementation used.
 from actionlib import SimpleActionServer
 # Import custom message, actions and services.

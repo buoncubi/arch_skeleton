@@ -16,21 +16,21 @@
     <node pkg = "arch_skeleton"  
           type = "gesture.py"      
           name = "gesture"      
-          launch-prefix = "x-terminal-emulator -e"
+          launch-prefix = "xterm -e"
           output = "screen"
     > </node>
 
     <node pkg = "arch_skeleton"  
           type = "speech.py"
           name = "speech"
-          launch-prefix = "x-terminal-emulator -e"
+          launch-prefix = "xterm -e"
           output = "screen"
     > </node>
 
     <node pkg = "arch_skeleton"  
           type = "robot_states.py" 
           name = "robot_states"
-          launch-prefix = "x-terminal-emulator -e"
+          launch-prefix = "xterm -e"
           output = "screen"
     > </node>
     

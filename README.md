@@ -1,7 +1,7 @@
 # Robot Architecture Skeleton
-**A ROS-based exercise for the Experimental Robotics Laboratory course  
-held at the University of Genoa.**    
-Author: *Luca Buoncomapgni*  
+**A ROS-based exercise for the Experimental Robotics Laboratory course held at the University of Genoa.**  
+Author: *Luca Buoncomapgni*
+
 ---
 
 ## Introduction
@@ -60,7 +60,7 @@ The scenario involves a pet-like robot with the following behaviour.
  - When the battery is low, the robot immediately stops and waits for charging. For simplicity, we 
    do not control the robot toward a specific location to recharge its battery.
  - When a user issues specific speech-based commands a human-robot interaction phase starts or 
-   stops, i.e., `called` (e.g., "Come here!", "Hi!", etc.) or `greeted` (e.g., "Bye", "Stop", 
+   stops, i.e., *called* (e.g., "Come here!", "Hi!", etc.) or *greeted* (e.g., "Bye", "Stop", 
    etc.), respectively.
  - When the interaction starts, the robot moves toward the user and waits for a pointing gesture. 
    The gesture is performed by the user to indicate a position in the environment.
@@ -97,7 +97,7 @@ other words, the Finite States Machine should process speech-based, gesture-base
 battery-based events as soon as they occur. Furthermore, we consider that the Finite States 
 Machine does not allow for concurrent states.
 
-## Software Structure
+## Project Structure
 
 ### Package List
 
@@ -155,13 +155,12 @@ this repository should be based on [SMACH](http://wiki.ros.org/smach). You can c
 functionalities. In addition, you can exploit the [smach_viewer](http://wiki.ros.org/smach_viewer)
 node to visualize and debug the implemented Finite States Machine.
 
-
 ## Software Components
 
 It follows the details of each software component implemented in this repository, which is available
 in the `scripts/` folder.
 
-### The `speech-eval` Node and Its Messages
+### The `speech-eval` Node, its Message and Parameters
 
 <img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/speech-eval.png" width="600">
 
@@ -189,7 +188,7 @@ With `rosparam` you might also set the `test/random_sense/active` and
 `test/random_sense/speech_time` parameters (detailed below) to see how messages are differently
 published.
 
-### The `gesture-eval` Node and Its Messages
+### The `gesture-eval` Node, its Message and Parameters
 
 <img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/gesture-eval.png" width="600">
 
@@ -219,9 +218,9 @@ With `rosparam` you might also set the `test/random_sense/active` and
 `test/random_sense/gesture_time` parameters (detailed below) to see how messages are differently 
 published.
 
-### The `robot-state` Node and Its Messages
+### The `robot-state` Node, its Messages and Parameters
 
-<img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/robot-state-eval.png" width="600">
+<img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/robot-state.png" width="900">
 
 The `robot-state` is a node that encodes the knowledge shared among the other components, and it 
 implements two services (i.e., `state/set_pose` and `state/get_pose`) and a publisher (i.e., 
@@ -260,7 +259,7 @@ With `rosparam` you might also set the `test/random_sense/active` and
 `test/random_sense/battery_time` parameters (detailed below) to see how messages are 
 differently published.
 
-### The `planner` Node and Its Messages
+### The `planner` Node, its Message and Parameters
 
 <img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/planner.png" width="900">
 
@@ -296,10 +295,11 @@ def done_callback(status, results):
 ...
 # Send a new `goal`, which is a message of type `PlanGoal`.
 client.send_goal(goal, done_cb = done_callback, feedback_cb = feedback_callback)
+...
 # Get the action server state.
 client.get_state()
 ...
-# Cancel all goal (or a single goal, i.e., `client.cancel_goal()`).
+# Cancel all goals (or the current goal only, i.e., `client.cancel_goal()`).
 client.cancel_all_goals()
 ```
 
@@ -320,7 +320,7 @@ can cancel the goal as well. Also, you can change the `test/random_plan_points` 
 `test/random_plan_time` parameters (detailed below) to tune the behaviour of the planner.
 
 
-### The `controller` Node and Its Messages
+### The `controller` Node, its Message and Parameters
 
 <img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/controller.png" width="900">
 
@@ -390,7 +390,8 @@ provides the required dependencies listed above.
 Follow these steps to install the software.
  - Clone this repository inside your ROS workspace (which should be sourced in your `.bashrc`).
  - Run `chmod +x <file_name>` for each file inside the `scripts` folder.
- - Run `carking_make` from the root of your ROS workspace.
+ - Run `catkin_make` from the root of your ROS workspace.
+ - Install `xterm` by entering the command `sudo apt install -y xterm`.
 
 ### Launchers
 
@@ -450,7 +451,8 @@ This software requires the following ROS parameters.
    required.  If it is `False`, then the three parameters below are not used.
  
 
-In addition, the `random_sense.launch` also requires the following three parameters.
+In addition, the `random_sense.launch` also requires the following three parameters. This 
+occurs because `test/random_sense/active` has been set to `True`.
 
  - `test/random_sense/gesture_time`: It indicates the time passed within two randomly generated 
    pointing gestures. It should be a list of two float numbers, i.e., `[min_time, max_time]` in 

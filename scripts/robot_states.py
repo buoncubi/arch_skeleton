@@ -4,7 +4,7 @@ import threading
 import random
 import rospy
 # Import constant name defined to structure the architecture.
-import architecture_name_mapper as anm
+from arch_skeleton import architecture_name_mapper as anm
 # Import the messages used by services and publishers.
 from std_msgs.msg import Bool
 from arch_skeleton.srv import GetPose, GetPoseResponse, SetPose, SetPoseResponse
@@ -119,7 +119,7 @@ class RobotState:
         # Loop to enable multiple interactions.
         while not rospy.is_shutdown():
             # Wait for the user to enter a battery state.
-            user_input = raw_input(' > ')
+            user_input = input(' > ')
             user_input = user_input.lower()
             # Understand the entered text.
             error = False

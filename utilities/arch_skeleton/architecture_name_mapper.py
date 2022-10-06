@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import rospy
 
 # The name of the parameter to define the environment size.
 # It should be a list `[max_x, max_y]` such that x:[0, `max_x`) and y:[0, `max_y`).

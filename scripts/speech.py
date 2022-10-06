@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+#!/usr/python/bin env
 
 import random
 import rospy
 # Import constant name defined to structure the architecture.
-import architecture_name_mapper as anm
+from arch_skeleton import architecture_name_mapper as anm
 # Import the message type to be published.
 from arch_skeleton.msg import Speech
 
@@ -53,7 +53,7 @@ def generate_random_speech(publisher, speech_timing):
 # Allow keyboard interaction to emulate speech-based user's command.
 def generate_manual_speech(publisher):
     # Wait until `Enter` is pressed and get the typed text.
-    user_input = raw_input(' > ')
+    user_input = input(' > ')
     user_input = user_input.lower()
     # Generate the message to be published.
     msg = init_msg()  
