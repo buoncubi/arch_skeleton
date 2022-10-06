@@ -160,7 +160,7 @@ node to visualize and debug the implemented Finite States Machine.
 It follows the details of each software component implemented in this repository, which is available
 in the `scripts/` folder.
 
-### The `speech-eval` Node and Its Messages
+### The `speech-eval` Node, its Message and Parameters
 
 <img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/speech-eval.png" width="600">
 
@@ -188,7 +188,7 @@ With `rosparam` you might also set the `test/random_sense/active` and
 `test/random_sense/speech_time` parameters (detailed below) to see how messages are differently
 published.
 
-### The `gesture-eval` Node and Its Messages
+### The `gesture-eval` Node, its Message and Parameters
 
 <img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/gesture-eval.png" width="600">
 
@@ -218,7 +218,7 @@ With `rosparam` you might also set the `test/random_sense/active` and
 `test/random_sense/gesture_time` parameters (detailed below) to see how messages are differently 
 published.
 
-### The `robot-state` Node and Its Messages
+### The `robot-state` Node, its Messages and Parameters
 
 <img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/robot-state.png" width="900">
 
@@ -259,7 +259,7 @@ With `rosparam` you might also set the `test/random_sense/active` and
 `test/random_sense/battery_time` parameters (detailed below) to see how messages are 
 differently published.
 
-### The `planner` Node and Its Messages
+### The `planner` Node, its Message and Parameters
 
 <img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/planner.png" width="900">
 
@@ -295,10 +295,11 @@ def done_callback(status, results):
 ...
 # Send a new `goal`, which is a message of type `PlanGoal`.
 client.send_goal(goal, done_cb = done_callback, feedback_cb = feedback_callback)
+...
 # Get the action server state.
 client.get_state()
 ...
-# Cancel all goal (or a single goal, i.e., `client.cancel_goal()`).
+# Cancel all goals (or the current goal only, i.e., `client.cancel_goal()`).
 client.cancel_all_goals()
 ```
 
@@ -319,7 +320,7 @@ can cancel the goal as well. Also, you can change the `test/random_plan_points` 
 `test/random_plan_time` parameters (detailed below) to tune the behaviour of the planner.
 
 
-### The `controller` Node and Its Messages
+### The `controller` Node, its Message and Parameters
 
 <img src="https://github.com/buoncubi/arch_skeleton/blob/main/diagrams/controller.png" width="900">
 
@@ -449,7 +450,8 @@ This software requires the following ROS parameters.
    required.  If it is `False`, then the three parameters below are not used.
  
 
-In addition, the `random_sense.launch` also requires the following three parameters.
+In addition, the `random_sense.launch` also requires the following three parameters. This 
+occurs because `test/random_sense/active` has been set to `True`.
 
  - `test/random_sense/gesture_time`: It indicates the time passed within two randomly generated 
    pointing gestures. It should be a list of two float numbers, i.e., `[min_time, max_time]` in 
