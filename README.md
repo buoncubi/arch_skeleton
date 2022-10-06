@@ -1,6 +1,6 @@
 # Robot Architecture Skeleton
 **A ROS-based exercise for the Experimental Robotics Laboratory course held at the University of Genoa.**  
-Author *Luca Buoncomapgni*
+Author: *Luca Buoncomapgni*
 
 ---
 
