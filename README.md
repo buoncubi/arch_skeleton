@@ -104,8 +104,8 @@ Machine does not allow for concurrent states.
 This repository contains a ROS package named `arch_skeleton` that includes the following resources.
  - [CMakeList.txt](CMakeList.txt): File to configure this package.
  - [package.xml](package.xml): File to configure this package.
- - [setup.py](setup.py): File to `import` the scripts in the `utilities` folder into the files
-   in the `script` folder. 
+ - [setup.py](setup.py): File to `import` python modules from the `utilities` folder into the 
+   files in the `script` folder. 
  - [launcher/](launcher/): Contains the configuration to launch this package.
     - [manual_sense.launch](launcher/manual_sense.launch): It launches this package allowing 
        for keyboard-based interface.
@@ -136,7 +136,7 @@ This repository contains a ROS package named `arch_skeleton` that includes the f
     - [controller.py](scripts/controller.py): It is a dummy implementation of a motion 
       controller.
  - [utilities/arch_skeleton](utilities/arch_skeleton/): It contains auxiliary python files, 
-   which are exploited bye in the files in the `scripts` folder.
+   which are exploited by the files in the `scripts` folder.
     - [architecture_name_mapper.py](scripts/architecture_name_mapper.py): It contains the name 
       of each *node*, *topic*, *server*, *actions* and *parameters* used in this architecture.
  - [diagrams/](diagrams/): It contains the diagrams shown below in this README file.
@@ -328,9 +328,8 @@ Then a GUI should appear. Set the goal you want to reach and hit the send button
 can cancel the goal as well. Also, you can change the `test/random_plan_points` and 
 `test/random_plan_time` parameters (detailed below) to tune the behaviour of the planner.
 
-To last command of the above fragment of code requires the `actionlib-tools` package, which can
-be installed with:
-done by typing:
+The last command of the above fragment of code requires the `actionlib-tools` package, which can
+be installed done by typing:
 ```bash
 sudo apt update
 sudo apt install ros-noetic-actionlib-tools
