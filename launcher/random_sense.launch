@@ -7,12 +7,12 @@
     <rosparam param="config/environment_size"> [10.0, 10.0] </rosparam>
     <rosparam param="config/speech_commands"> ["Hello", "Bye"] </rosparam>
 
-    <rosparam param="test/random_motion_time"> [0.1, 2.0] </rosparam>
     <rosparam param="test/random_plan_points"> [2, 8] </rosparam>
-    <rosparam param="test/random_plan_time"> [0.1, 1.0] </rosparam>
+    <rosparam param="test/random_plan_time"> [0.2, 0.8] </rosparam>
+    <rosparam param="test/random_motion_time"> [0.1, 1.0] </rosparam>
 
     <rosparam param="test/random_sense/active"> True </rosparam>
-    <rosparam param="test/random_sense/gesture_time"> [2.0, 30.0] </rosparam>
+    <rosparam param="test/random_sense/gesture_time"> [2.0, 10.0] </rosparam>
     <rosparam param="test/random_sense/speech_time"> [2.0, 30.0] </rosparam>
     <rosparam param="test/random_sense/battery_time"> [15.0, 40.0] </rosparam>
 

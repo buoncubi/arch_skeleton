@@ -32,7 +32,7 @@ class PlaningAction(object):
                                       execute_cb=self.execute_callback, 
                                       auto_start=False)
         self._as.start()
-        # Log configuration.
+        # Log information.
         log_msg = '`%s` Action Server initialised. It will create random path with a number of point ' \
                   'spanning in [%d, %d). Each point will be generated with a delay spanning in [%f, %f).' \
                   % (anm.ACTION_PLANNER, self._random_plan_points[0], self._random_plan_points[1],

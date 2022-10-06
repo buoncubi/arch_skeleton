@@ -60,8 +60,8 @@ class RobotState:
         return SetPoseResponse()
 
     # The `robot/get_pose` service implementation.
-    # The `request` input parameter is given by the client as empty. Thus it is not used.
-    # The `response` is returned to the client and contains the current robot pose.
+    # The `request` input parameter is given by the client as empty. Thus, it is not used.
+    # The `response` returned to the client contains the current robot pose.
     def get_pose(self, request):
         # Log information.
         if self._pose is None:
@@ -75,7 +75,7 @@ class RobotState:
         response.pose = self._pose
         return response
 
-    # Publish the battery level changes. This method runs on a separate thread.
+    # Publish changes of battery levels. This method runs on a separate thread.
     def _is_battery_low(self):
         # Define a `lathed` publisher to wait for initialisation and publish immediately.
         publisher = rospy.Publisher(anm.TOPIC_BATTERY_LOW, Bool, queue_size=1, latch=True)
@@ -148,3 +148,4 @@ if __name__ == "__main__":
     # Instantiate the node manager class and wait.
     RobotState()
     rospy.spin()
+

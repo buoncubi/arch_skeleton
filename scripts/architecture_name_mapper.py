@@ -5,9 +5,10 @@
 PARAM_ENVIRONMENT_SIZE = 'config/environment_size'
 
 # The name of a boolean parameter to active random testing.
-# If the value is `False` a keyboard-based interface will show. If `True`, random data concerning speech, 
-# gesture and battery  level will be generated. If `True`, the architecture also requires all the parameters 
-# with a the name `test/random_sense/*`, which are not required if `False`.
+# If the value is `False` a keyboard-based interface will be used to produce stimulus 
+# (i.e., speech, gesture and battery signals). Instead, random stimulus will be generate 
+# if `True`. In the latter case, the architecture also requires all the parameters 
+# with a the scope `test/random_sense/*`, which are not used if `False`.
 PARAM_RANDOM_ACTIVE = 'test/random_sense/active'
 
 
@@ -23,36 +24,33 @@ NODE_SPEECH = 'speech-eval'
 TOPIC_SPEECH = 'sensor/speech'
 
 # The delay between random speech-based commands.
-# It should be a list `[min_time, max_time]`, and the commands 
+# It should be a list `[min_time, max_time]`, and the next command
 # will occur after a random number of seconds within such an interval.
 PARAM_SPEECH_TIME = 'test/random_sense/speech_time'
 
 # The string that the user can enter to start or end the interaction.
 # It should be a list of String (e.g., `["Hello", "Bye"]`), where the 
 # fist item makes the interaction start, while the second item is
-# used to end the interactions.
+# the keyword that ends the interactions.
 PARAM_SPEECH_COMMANDS = 'config/speech_commands'
 # ---------------------------------------------------------
 
 
-# The name of the node detecting user's pointing gestures.
+# The name of the node that detects user's pointing gestures.
 NODE_GESTURE = 'gesture-eval'
 
 # The name of the topic in which the pointing data is published 
 TOPIC_GESTURE = 'sensor/gesture'
 
 # The delay between random pointing gestures.
-# It should be a list `[min_time, max_time]`, and the gestures 
+# It should be a list `[min_time, max_time]`, and the next gesture
 # will occur after a random number of seconds within such an interval.
 PARAM_GESTURE_TIME = 'test/random_sense/gesture_time'
 # ---------------------------------------------------------
 
 
-# The name of the node representing the knowledge required for this scenario.
+# The name of the node representing the shared knowledge required for this scenario.
 NODE_ROBOT_STATE = 'robot-state'
-
-# The name of the topic where the battery state is published.
-TOPIC_BATTERY_LOW = 'state/battery_low'
 
 # The name of the server to get the current robot pose.
 SERVER_GET_POSE = 'state/get_pose'
@@ -60,9 +58,12 @@ SERVER_GET_POSE = 'state/get_pose'
 # The name of the server to set the current robot pose. 
 SERVER_SET_POSE = 'state/set_pose'
 
+# The name of the topic where the battery state is published.
+TOPIC_BATTERY_LOW = 'state/battery_low'
+
 # The delay between changes of battery levels, i.e., high/low.
-# It should be a list `[min_time, max_time]`, and the battery change will 
-# occur after a random number of seconds within such an interval.
+# It should be a list `[min_time, max_time]`, and the battery level change
+# will occur after a random number of seconds within such an interval.
 PARAM_BATTERY_TIME = 'test/random_sense/battery_time'
 # ---------------------------------------------------------
 
@@ -77,7 +78,7 @@ ACTION_PLANNER = 'motion/planner'
 # Where the number of points is a random value in the interval [`min_n`, `max_n`).
 PARAM_PLANNER_POINTS = 'test/random_plan_points'
 
-# The delay between the computation of via points.
+# The delay between the computation of the next via points.
 # It should be a list `[min_time, max_time]`, and the computation will 
 # last for a random number of seconds in such an interval.
 PARAM_PLANNER_TIME = 'test/random_plan_time'
@@ -98,5 +99,5 @@ PARAM_CONTROLLER_TIME = 'test/random_motion_time'
 
 
 # Function used to label each log with a producer tag.
-def tag_log(msg, log_producer):
-    return '@%s>> %s' % (log_producer, msg)
+def tag_log(msg, producer_tag):
+    return '@%s>> %s' % (producer_tag, msg)

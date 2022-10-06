@@ -30,7 +30,7 @@ class ControllingAction(object):
                                       execute_cb=self.execute_callback,
                                       auto_start=False)
         self._as.start()
-        # Log configuration.
+        # Log information.
         log_msg = '`%s` Action Server initialised. It will navigate trough the plan with a delay between each via point ' \
                   'spanning in [%f, %f).' % (anm.ACTION_CONTROLLER, self._random_motion_time[0], self._random_motion_time[1])
         rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
