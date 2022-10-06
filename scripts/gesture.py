@@ -35,7 +35,7 @@ def generate_random_gesture(publisher, environment_size, gesture_timing):
     msg.coordinate.y = random.uniform(0, environment_size[1] + 2)
     # Publish the message.
     publisher.publish(msg)
-    log_msg = 'Publishing random user gesture: (%f, %f).' % (msg.coordinate.x, msg.coordinate.y)
+    log_msg = f'Publishing random user gesture: ({msg.coordinate.x}, {msg.coordinate.y}).'
     rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
     # Wait before the next random message is published.
     delay = random.uniform(gesture_timing[0], gesture_timing[1])
@@ -56,15 +56,15 @@ def generate_manual_gesture(publisher, environment_size):
         msg.coordinate.y = float(coordinate[1])
         # Check the correctness of the entered data.
         if len(coordinate) != 2:
-            log_msg = 'A not 2D coordinate is given, i.e., `%s`.' % user_input
+            log_msg = f'A not 2D coordinate is given, i.e., `{user_input}`.'
             rospy.logwarn(anm.tag_log(log_msg, LOG_TAG))
         if msg.coordinate.x < 0 or msg.coordinate.x > environment_size[0] \
                 or msg.coordinate.y < 0 or msg.coordinate.y > environment_size[1]:
-            log_msg = 'Entered coordinates are out of the environment, i.e., `%s`.' % user_input
+            log_msg = f'Entered coordinates are out of the environment, i.e., `{user_input}`.'
             rospy.logwarn(anm.tag_log(log_msg, LOG_TAG))
         # Publish the message.
         publisher.publish(msg)
-        log_msg = 'Publishing entered user gesture: (%f, %f).' % (msg.coordinate.x, msg.coordinate.y)
+        log_msg = f'Publishing entered user gesture: ({msg.coordinate.x}, {msg.coordinate.y}).'
         rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
     except Exception as e:
         # Cannot understand user's command.
@@ -79,14 +79,14 @@ if __name__ == '__main__':
     randomness = rospy.get_param(anm.PARAM_RANDOM_ACTIVE, True)
     # Log information.
     publisher = rospy.Publisher(anm.TOPIC_GESTURE, Gesture, queue_size=1, latch=True)
-    log_msg = 'Initialise node `%s` with topic `%s`.' % (anm.NODE_GESTURE, anm.TOPIC_GESTURE)
+    log_msg = f'Initialise node `{anm.NODE_GESTURE}` with topic `{anm.TOPIC_GESTURE}`.'
     rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
 
     if randomness:
         # Configure node based on parameters to generate random gesture-based data.
         gesture_timing = rospy.get_param(anm.PARAM_GESTURE_TIME, [2.0, 30.0])
-        log_msg = 'Random-based data generation active: a random command with a delay in the range of ' \
-                  '[%f, %f) seconds.' % (gesture_timing[0], gesture_timing[1])
+        log_msg = f'Random-based data generation active: a random command with a delay in the range of ' \
+                  f'[{gesture_timing[0]}, {gesture_timing[1]}) seconds.'
         rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
     else:
         # Explain keyboard-based interaction.

@@ -33,11 +33,9 @@ class PlaningAction(object):
                                       auto_start=False)
         self._as.start()
         # Log information.
-        log_msg = '`%s` Action Server initialised. It will create random path with a number of point ' \
-                  'spanning in [%d, %d). Each point will be generated with a delay spanning in [%f, %f).' \
-                  % (anm.ACTION_PLANNER, self._random_plan_points[0], self._random_plan_points[1],
-                     self._random_plan_time[0], self._random_plan_time[1])
-        rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
+        log_msg = (f'`{anm.ACTION_PLANNER}` Action Server initialised. It will create random path with a number of point '
+                   f'spanning in [{self._random_plan_points[0]}, {self._random_plan_points[1]}). Each point will be generated '
+                   f'with a delay spanning in [{self._random_plan_time[0]}, {self._random_plan_time[1]}).')
       
     # The callback invoked when a client set a goal to the `planner` server.
     # This function will return a list of random points (i.e., the plan) when the fist point
@@ -60,8 +58,8 @@ class PlaningAction(object):
             self._as.set_aborted()
             return
         if not(self._is_valid(start_point) and self._is_valid(target_point)):
-            log_msg = 'Start point (%f, %f) or target point (%f, %f) point out of the environment. This service will ' \
-                      'be aborted!.' % (start_point.x, start_point.y, target_point.x, target_point.y)
+            log_msg = (f'Start point ({start_point.x}, {start_point.y}) or target point ({target_point.x}, '
+                       f'{target_point.y}) point out of the environment. This service will be aborted!.')
             rospy.logerr(anm.tag_log(log_msg, LOG_TAG))
             # Close service by returning an `ABORT` state to the client.
             self._as.set_aborted()
@@ -78,7 +76,7 @@ class PlaningAction(object):
 
         # Get a random number of via points to be included in the plan.
         number_of_points = random.randint(self._random_plan_points[0], self._random_plan_points[1] + 1)
-        log_msg = 'Server is planning %i points...' % (number_of_points + 1)
+        log_msg = f'Server is planning {number_of_points + 1} points...'
         rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
 
         # Generate the points of the plan.
@@ -128,12 +126,11 @@ def _get_pose_client():
         response = service()
         pose = response.pose
         # Log service response.
-        log_msg = 'Retrieving current robot position from the `%s` node as: (%f, %f).' \
-                  % (anm.NODE_ROBOT_STATE, pose.x, pose.y)
+        log_msg = f'Retrieving current robot position from the `{anm.NODE_ROBOT_STATE}` node as: ({pose.x}, {pose.y}).'
         rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
         return pose
     except rospy.ServiceException as e:
-        log_msg = 'Server cannot get current robot position: %s' % e
+        log_msg = f'Server cannot get current robot position: {e}'
         rospy.logerr(anm.tag_log(log_msg, LOG_TAG))
 
 

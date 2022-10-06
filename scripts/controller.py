@@ -31,8 +31,8 @@ class ControllingAction(object):
                                       auto_start=False)
         self._as.start()
         # Log information.
-        log_msg = '`%s` Action Server initialised. It will navigate trough the plan with a delay between each via point ' \
-                  'spanning in [%f, %f).' % (anm.ACTION_CONTROLLER, self._random_motion_time[0], self._random_motion_time[1])
+        log_msg = (f'`{anm.ACTION_CONTROLLER}` Action Server initialised. It will navigate trough the plan with a delay ' 
+                   f'between each via point spanning in [{self._random_motion_time[0]}, {self._random_motion_time[1]}).')
         rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
 
     # The callback invoked when a client set a goal to the `controller` server.
@@ -67,7 +67,7 @@ class ControllingAction(object):
             # Set the new current position into the `robot-state` node.
             _set_pose_client(point)
             # Log current robot position.
-            log_msg = 'Reaching point (%f, %f).' % (point.x, point.y)
+            log_msg = f'Reaching point ({point.x}, {point.y}).'
             rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
 
         # Publish the results to the client.
@@ -85,13 +85,13 @@ def _set_pose_client(pose):
     rospy.wait_for_service(anm.SERVER_SET_POSE)
     try:
         # Log service call.
-        log_msg = 'Set current robot position to the `%s` node.' % anm.SERVER_SET_POSE
+        log_msg = f'Set current robot position to the `{anm.SERVER_SET_POSE}` node.'
         rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
         # Call the service and set the current robot position.
         service = rospy.ServiceProxy(anm.SERVER_SET_POSE, SetPose)
         service(pose)  # The `response` is not used.
     except rospy.ServiceException as e:
-        log_msg = 'Server cannot set current robot position: %s' % e
+        log_msg = f'Server cannot set current robot position: {e}'
         rospy.logerr(anm.tag_log(log_msg, LOG_TAG))
 
 

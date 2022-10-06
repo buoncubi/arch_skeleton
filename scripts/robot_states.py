@@ -30,8 +30,8 @@ class RobotState:
         self._randomness = rospy.get_param(anm.PARAM_RANDOM_ACTIVE, True)
         if self._randomness:
             self._random_battery_time = rospy.get_param(anm.PARAM_BATTERY_TIME, [15.0, 40.0])
-            log_msg = 'Random-based battery low notification active: the battery change state (i.e., low/high) with a ' \
-                      'delay in the range of [%f, %f) seconds.' % (self._random_battery_time[0], self._random_battery_time[1])
+            log_msg = (f'Random-based battery low notification active: the battery change state (i.e., low/high) with a '
+                       f'delay in the range of [{self._random_battery_time[0]}, {self._random_battery_time[1]}) seconds.')
             rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
         # Define services.
         rospy.Service(anm.SERVER_GET_POSE, GetPose, self.get_pose)
@@ -40,8 +40,8 @@ class RobotState:
         th = threading.Thread(target=self._is_battery_low)
         th.start()
         # Log information.
-        log_msg = 'Initialise node `%s` with services `%s` and `%s`, and topic %s.' \
-                  % (anm.NODE_ROBOT_STATE, anm.SERVER_GET_POSE, anm.SERVER_SET_POSE, anm.TOPIC_BATTERY_LOW)
+        log_msg = (f'Initialise node `{anm.NODE_ROBOT_STATE}` with services `{anm.SERVER_GET_POSE}` and '
+                   f'`{anm.SERVER_SET_POSE}`, and topic {anm.TOPIC_BATTERY_LOW}.')
         rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
 
     # The `robot/set_pose` service implementation.
@@ -52,8 +52,8 @@ class RobotState:
             # Store the new current robot position.
             self._pose = request.pose
             # Log information.
-            self._print_info('Set current robot position through `%s` as (%f, %f)' \
-                             % (anm.SERVER_SET_POSE, self._pose.x, self._pose.y))
+            self._print_info(f'Set current robot position through `{anm.SERVER_SET_POSE}` '
+                             f'as ({self._pose.x}, {self._pose.y}).')
         else:
             rospy.logerr(anm.tag_log('Cannot set an unspecified robot position', LOG_TAG))
         # Return an empty response.
@@ -67,8 +67,7 @@ class RobotState:
         if self._pose is None:
             rospy.logerr(anm.tag_log('Cannot get an unspecified robot position', LOG_TAG))
         else:
-            log_msg = 'Get current robot position through `%s` as (%f, %f)' \
-                      % (anm.SERVER_GET_POSE, self._pose.x, self._pose.y)
+            log_msg = f'Get current robot position through `{anm.SERVER_GET_POSE}` as ({self._pose.x}, {self._pose.y})'
             self._print_info(log_msg)
         # Create the response with the robot pose and return it.
         response = GetPoseResponse()
@@ -97,9 +96,9 @@ class RobotState:
             publisher.publish(Bool(self._battery_low))
             # Log state.
             if self._battery_low:
-                log_msg = 'Robot got low battery after %f seconds.' % delay
+                log_msg = f'Robot got low battery after {delay} seconds.'
             else:
-                log_msg = 'Robot got a fully charged battery after %f seconds.' % delay
+                log_msg = f'Robot got a fully charged battery after {delay} seconds.'
             self._print_info(log_msg)
             # Wait for simulate battery usage.
             delay = random.uniform(self._random_battery_time[0], self._random_battery_time[1])

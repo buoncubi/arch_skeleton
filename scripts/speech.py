@@ -43,7 +43,7 @@ def generate_random_speech(publisher, speech_timing):
         msg.command = random.choice([PLAY_TAG, GREETED_TAG]) 
     # Publish the message.
     publisher.publish(msg)
-    log_msg = 'Publishing random user command: `%s`' % msg.command
+    log_msg = f'Publishing random user command: `{msg.command}`'
     rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
     # Wait before the next random message is published.
     delay = random.uniform(speech_timing[0], speech_timing[1])
@@ -70,7 +70,7 @@ def generate_manual_speech(publisher):
     # Publish the message.
     if not error:
         publisher.publish(msg)   
-        log_msg = 'Publishing entered user command: `%s`' % msg.command
+        log_msg = f'Publishing entered user command: `{msg.command}`'
         rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
 
 
@@ -81,13 +81,14 @@ if __name__ == '__main__':
     randomness = rospy.get_param(anm.PARAM_RANDOM_ACTIVE, True)
     publisher = rospy.Publisher(anm.TOPIC_SPEECH, Speech, queue_size=1, latch=True)
     # Log information.
-    log_msg = 'Initialise node `%s` with topic `%s`.' % (anm.NODE_SPEECH, anm.TOPIC_SPEECH)
+    log_msg = f'Initialise node `{anm.NODE_SPEECH}` with topic `{anm.TOPIC_SPEECH}`.'
     rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
 
     if randomness:
         # Configure node based on parameters to generate random speech-based data.
         speech_timing = rospy.get_param(anm.PARAM_SPEECH_TIME, [2.0, 30.0])
-        log_msg = 'Random-based data generation active: a random command with a delay in the range of [%f, %f) seconds.' % (speech_timing[0], speech_timing[1])
+        log_msg = (f'Random-based data generation active: a random command with a delay '
+                   f'in the range of [{speech_timing[0]}, {speech_timing[1]}) seconds.')
         rospy.loginfo(anm.tag_log(log_msg, LOG_TAG))
     else:
         # Explain keyboard-based interaction.
