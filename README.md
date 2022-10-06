@@ -390,7 +390,7 @@ provides the required dependencies listed above.
 Follow these steps to install the software.
  - Clone this repository inside your ROS workspace (which should be sourced in your `.bashrc`).
  - Run `chmod +x <file_name>` for each file inside the `scripts` folder.
- - Run `carking_make` from the root of your ROS workspace.
+ - Run `catkin_make` from the root of your ROS workspace.
 
 ### Launchers
 
