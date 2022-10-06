@@ -12,7 +12,7 @@ for bootstrapping software architectures for robotics.
 
 In particular, this repository showcases the usage of `roslaunch` and
 *parameters*, as well as the implementation of ROS *nodes*, *servers* and *actions*, with related 
-*messages*; including arrays of custom items. These examples are provided in Python 2.
+*messages*; including arrays of custom items. These examples are provided in Python 3.
 
 In addition, the architecture has been bootstrapped with an approach based on the following 
 procedure.
@@ -397,7 +397,7 @@ the behaviour of the controller.
 
 ## Launching the Software
 
-This software has been based on ROS Kinetic, and it has been developed with this Docker-based
+This software has been based on ROS Noetic, and it has been developed with this Docker-based
 [environment](https://hub.docker.com/repository/docker/carms84/exproblab), which already 
 provides the required dependencies listed above. 
 
