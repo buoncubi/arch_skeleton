@@ -75,7 +75,7 @@ The scenario involves a pet-like robot with the following behaviour.
 For simplicity and showing purposes, we consider a scenario with the following assumptions.
  - The robot moves in a 2D environment without obstacles.
  - Given a current and target position, the robot plans a trajectory to follow, i.e., a list of via 
-   points. Then it follows the trajectory by reaching each via point. The distance between via
+   points. Then, it follows the trajectory by reaching each via point. The distance between via
    points is small enough to disregard the positions within two via points (e.g., for 
    representing the current robot pose).
  - The user can only say simple (and predefined) commands to the robot through the speech-based 
@@ -324,7 +324,7 @@ rosrun arch_skeleton planner.py
 # Open a new terminal.
 rosrun actionlib_tools axclient.py /motion/planner
 ```
-Then a GUI should appear. Set the goal you want to reach and hit the send button. Eventually, you
+Then, a GUI should appear. Set the goal you want to reach and hit the send button. Eventually, you
 can cancel the goal as well. Also, you can change the `test/random_plan_points` and 
 `test/random_plan_time` parameters (detailed below) to tune the behaviour of the planner.
 
