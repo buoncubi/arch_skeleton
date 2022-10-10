@@ -10,7 +10,7 @@ This repository contains ROS-based software that simulates a behavioural archite
 The objective is twofold: show examples of ROS software, and provide some guidelines 
 for bootstrapping software architectures for robotics.
 
-In particular, this repository showcases the usage of `roslaunch` and
+In particular, this repository showcases the usage of *roslaunch* and
 *parameters*, as well as the implementation of ROS *nodes*, *servers* and *actions*, with related 
 *messages*; including arrays of custom items. These examples are provided in Python 3.
 
@@ -36,7 +36,7 @@ procedure.
    case situations to further stress the architecture.
 
  5. Write scripts to automatically evaluate if the randomized robot behaviour is consistent, 
-   e.g., though `if` statements and `timestamp` comparison.
+   e.g., though *if* statements and *timestamp* comparison.
 
  6. Develop the actual implementation (and configure the relevant dependencies) of a single 
    software component developed in 1 with a dummy implementation.
@@ -135,7 +135,7 @@ This repository contains a ROS package named `arch_skeleton` that includes the f
     - [planner.py](scripts/planner.py): It is a dummy implementation of a motion planner.
     - [controller.py](scripts/controller.py): It is a dummy implementation of a motion 
       controller.
- - [utilities/arch_skeleton](utilities/arch_skeleton/): It contains auxiliary python files, 
+ - [utilities/arch_skeleton/](utilities/arch_skeleton/): It contains auxiliary python files, 
    which are exploited by the files in the `scripts` folder.
     - [architecture_name_mapper.py](scripts/architecture_name_mapper.py): It contains the name 
       of each *node*, *topic*, *server*, *actions* and *parameters* used in this architecture.
