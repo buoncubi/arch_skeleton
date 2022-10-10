@@ -10,7 +10,7 @@ This repository contains ROS-based software that simulates a behavioural archite
 The objective is twofold: show examples of ROS software, and provide some guidelines 
 for bootstrapping software architectures for robotics.
 
-In particular, this repository showcases the usage of `roslaunch` and
+In particular, this repository showcases the usage of *roslaunch* and
 *parameters*, as well as the implementation of ROS *nodes*, *servers* and *actions*, with related 
 *messages*; including arrays of custom items. These examples are provided in Python 2.
 
@@ -36,7 +36,7 @@ procedure.
    case situations to further stress the architecture.
 
  5. Write scripts to automatically evaluate if the randomized robot behaviour is consistent, 
-   e.g., though `if` statements and `timestamp` comparison.
+   e.g., though *if* statements and *timestamp* comparison.
 
  6. Develop the actual implementation (and configure the relevant dependencies) of a single 
    software component developed in 1 with a dummy implementation.
