@@ -212,7 +212,7 @@ roscore
 rosparam set config/environment_size '[10,10]'
 rosrun arch_skeleton gesture.py 
 # Open a new terminal
-rostopic echo /sensor/speech 
+rostopic echo /sensor/gesture 
 ```
 With `rosparam` you might also set the `test/random_sense/active` and  
 `test/random_sense/gesture_time` parameters (detailed below) to see how messages are differently 
