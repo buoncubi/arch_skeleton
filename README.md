@@ -499,4 +499,9 @@ In addition, the Finite States Machine should have the following functionalities
 Note that, in Python, ROS subscribes run on separate threads. Thus, you 
 need to use `mutexes` to assure data consistency across concurrent threads.
 
+# A Solution
+
+A possible solution to this exercise is available in the [Wiki](https://github.com/buoncubi/arch_skeleton/wiki/Kinetic-Py2-Solution) 
+of this repository.
+
 ---
