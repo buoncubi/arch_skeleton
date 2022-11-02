@@ -101,4 +101,4 @@ PARAM_CONTROLLER_TIME = 'test/random_motion_time'
 
 # Function used to label each log with a producer tag.
 def tag_log(msg, producer_tag):
-    return '@%s>> %s' % (producer_tag, msg)
+    return f'@{producer_tag}>> {msg}'
