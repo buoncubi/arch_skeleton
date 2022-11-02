@@ -519,7 +519,7 @@ need to use `mutexes` to assure data consistency across concurrent threads.
 
 # A Solution
 
-A possible solution to this exervise is available in the [Wiki](https://github.com/buoncubi/arch_skeleton/wiki/Noetic-Py3-Solution)
+A possible solution to this exercise is available in the [Wiki](https://github.com/buoncubi/arch_skeleton/wiki/Noetic-Py3-Solution)
 of this repository.
 
 ---
